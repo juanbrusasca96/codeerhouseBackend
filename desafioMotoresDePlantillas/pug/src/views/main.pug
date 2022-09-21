@@ -1,0 +1,6 @@
+extends layout
+block contenido
+    if render
+        ul
+            each prod in productos
+                li= prod.title + ', ' + prod.price

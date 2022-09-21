@@ -1,0 +1,23 @@
+html
+    body
+        a(href="/api/productos/productos") productos
+        form(
+            action="/api/productos"
+            method="post"
+            )
+            input(
+                type="text"
+                name="title"
+                id="title"
+                placeholder="title"
+                )
+            input(
+                type="number"
+                name="price"
+                id="price"
+                placeholder="price"
+                )
+            input(
+                type="submit"
+                value="INGRESAR UN PRODUCTO"
+                )
