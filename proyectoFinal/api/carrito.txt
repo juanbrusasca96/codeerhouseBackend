@@ -1,0 +1,1 @@
+[{"nombre":"Juan","descripcion":"juan","codigo":"123","foto":"sdafsdaf","precio":"5","stock":"5","id":4}]
