@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 1</title>
+</head>
+
+<body>
+    <a href="/api/productos-test">productos generados con faker</a>
+    <h1>PRODUCTOS</h1>
+    <form id="formularioProductos">
+        <input type="text" name="title" id="title" placeholder="title">
+        <input type="number" name="price" id="price" placeholder="price">
+        <input type="submit" value="INGRESAR UN PRODUCTO">
+    </form>
+    <div>
+        <ul id="listaProductos"></ul>
+    </div>
+    <h1>CENTRO DE MENSAJES</h1>
+    <form id="formularioMensajes">
+        Email: <input type="text" name="emailMensajes" id="emailMensajes">
+        Mensaje: <input type="text" name="infoMensajes" id="infoMensajes">
+        <input type="submit" value="INGRESAR">
+    </form>
+    <div>
+        <ul id="listaMensajes"></ul>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
