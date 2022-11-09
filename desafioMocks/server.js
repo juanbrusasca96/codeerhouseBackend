@@ -1,15 +1,25 @@
 const express = require('express')
-const {faker} = require('@faker-js/faker')
+const { faker } = require('@faker-js/faker')
 const http = require('http')
 const { Server: SocketServer } = require('socket.io')
-const { Contenedor } = require('./contenedor')
+const { Contenedor } = require('./contenedor.js')
 const { db } = require('./db/dbConfig.js')
 const { dbSQLite } = require('./db/dbConfigSQlite.js')
 
 const app = express()
 const hbs = require('express-handlebars')
+const { ContenedorMensajes } = require('./contenedorMensajes.js')
+const { messageModel } = require('./db/models/messageModels.js')
+const { mongoConnect } = require('./db/configMongodb.js')
 const httpServer = http.createServer(app)
 const socketServer = new SocketServer(httpServer)
+
+
+try {
+  mongoConnect()
+} catch (error) {
+  console.log(error);
+}
 
 app.use(express.static('./public'))
 app.use(express.json())
@@ -34,7 +44,7 @@ app.get('/api/productos-test', (req, res) => {
       id: i,
       name: faker.commerce.product(),
       price: faker.commerce.price(1, 10000, 0, '$'),
-      image: faker.image.image(200,200,true)
+      image: faker.image.image(200, 200, true)
     }
     arrayResponse.push(prod)
   }
@@ -44,12 +54,16 @@ app.get('/api/productos-test', (req, res) => {
 
 //WEBSOCKET
 // const mensajes = []
-const mensajes = new Contenedor(dbSQLite, 'mensajes')
+const mensajes = new ContenedorMensajes(messageModel)
 const productos = new Contenedor(db, 'productos')
+let flag = true
 socketServer.on('connection', async (client) => {
   console.log('!Nuevo cliente conectado!')
 
-  client.emit('mensajeBienvenida', await mensajes.getAll())
+  if (flag) {
+    client.emit('mensajeBienvenida', await mensajes.getAll())
+    flag = false
+  }
 
   client.on('mensaje', async (obj) => {
     await mensajes.save(obj)
