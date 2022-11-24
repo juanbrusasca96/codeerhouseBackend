@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 1</title>
+</head>
+
+<body>
+    {{#if name}}
+    <div>
+        <h1>Bienvenido {{email}}</h1>
+        <form action="/logout" method="POST">
+            <div>
+                <input type='submit' value='Salir' />
+            </div>
+        </form>
+    </div>
+    {{/if}}
+    <a href="/api/productos-test">productos generados con faker</a>
+    <h1>PRODUCTOS</h1>
+    <form id="formularioProductos">
+        <input type="text" name="title" id="title" placeholder="title">
+        <input type="number" name="price" id="price" placeholder="price">
+        <input type="submit" value="INGRESAR UN PRODUCTO">
+    </form>
+    <div>
+        <ul id="listaProductos"></ul>
+    </div>
+    <h1>CENTRO DE MENSAJES</h1>
+    <div id="porcentajeCompresion">
+    </div>
+    <form id="formularioMensajes">
+        Email: <input type="text" name="emailMensajes" id="emailMensajes">
+        Nombre: <input type="text" name="nombreMensajes" id="nombreMensajes">
+        Apellido: <input type="text" name="apellidoMensajes" id="apellidoMensajes">
+        Edad: <input type="text" name="edadMensajes" id="edadMensajes">
+        Alias: <input type="text" name="aliasMensajes" id="aliasMensajes">
+        Avatar: <input type="text" name="avatarMensajes" id="avatarMensajes">
+        Mensaje: <input type="text" name="infoMensajes" id="infoMensajes">
+        <input type="submit" value="INGRESAR">
+    </form>
+    <div>
+        <ul id="listaMensajes"></ul>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
