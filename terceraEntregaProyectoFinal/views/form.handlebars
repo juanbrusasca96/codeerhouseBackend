@@ -1,0 +1,58 @@
+{{#if username}}
+<div>
+	<h1>Bienvenido</h1>
+	<div>
+		<span>{{username}}</span>
+		<form action="/logout" method="POST">
+			<div>
+				<input type='submit' value='Cerrar sesión' />
+			</div>
+		</form>
+	</div>
+</div>
+{{/if}}
+<section>
+	<h2>Ingrese Producto</h2>
+	<form id="form-add-product">
+		<div>
+			<label for='name'>Nombre</label>
+			<input id="name-product" type='text' name='name' />
+		</div>
+		<div>
+			<label for='price'>Precio</label>
+			<input id="price-product" type='number' name='price' />
+		</div>
+		<div>
+			<label for='img'>Foto URL</label>
+			<input id="img-product" type='url' name='img' />
+		</div>
+		<div>
+			<input type='submit' value='Enviar' />
+		</div>
+	</form>
+</section>
+<section>
+	<h2>Vista de Productos</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Foto</th>
+			</tr>
+		</thead>
+		<tbody id="table-products"></tbody>
+	</table>
+	<h2 id="no-products">No hay productos listados</h2>
+</section>
+<section>
+	<h2>Centro de Mensajes</h2>
+	<input id="user-email" type="mail" id="usermail" placeholder="Ingresa tu email">
+	<hr>
+	<div id="table-chat"></div>
+	<form id="chat-form">
+		<input id="chat-message" type="text" name="chatmessage"
+			placeholder="Ingresá un mensaje...">
+		<button type="submit">Enviar</button>
+	</form>
+</section>
