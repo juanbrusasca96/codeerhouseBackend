@@ -3,6 +3,7 @@ const Product = require('../models/Product');
 const { faker } = require('@faker-js/faker');
 const User = require('../models/User');
 const twilio = require('twilio')
+require('dotenv').config();
 
 const arrayResponse = []
 
@@ -83,7 +84,7 @@ const getFailSignup = (req, res) => res.render('failsignup.handlebars');
 const addCart = async (req, res) => {
 	const { username } = req.user;
 	const usuario = await User.findOne({ 'username': username }).exec();
-	const client = twilio('AC141677d68821c485a0ee28e1cbd83445', '1c9d9dc95816006a14788915e892c1df')
+	const client = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN)
 	await client.messages.create({
 		body: 'su pedido esta siendo procesado',
 		from: "+12057367531",
