@@ -21,11 +21,11 @@ passport.use('signup', new LocalStrategy({
 	passReqToCallback: true
 },
 	(req, username, password, done) => {
-		const { name, address, age } = req.body;
+		const { name, address, age, phoneNumber } = req.body;
 		User.findOne({ 'username': username }, (error, user) => {
 			if (error) return done(error, user, { message: 'Error al intentar registrar el usuario' });
 			if (user) return done(null, false, { message: 'El usuario ya existe' });
-			const newUser = { username, password: createHash(password), name, address, age }
+			const newUser = { username, password: createHash(password), name, address, age, phoneNumber }
 			User.create(newUser, (error, userWithId) => {
 				if (error) return done(error, user, { message: 'Error creando usuario' });
 				return done(null, userWithId, { message: 'Usuario registrado' });

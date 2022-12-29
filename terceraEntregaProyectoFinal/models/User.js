@@ -6,7 +6,8 @@ const userSchema = new Schema({
 	password: { type: String, required: true },
 	name: { type: String, required: true },
 	address: { type: String, required: true },
-	age: { type: Number, required: true }
+	age: { type: Number, required: true },
+	phoneNumber: { type: Number, required: true }
 });
 
 module.exports = mongoose.model('users', userSchema);

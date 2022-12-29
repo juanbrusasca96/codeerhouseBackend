@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { getIndex, getLogin, getSignup, postLogin, postSignup, getFailLogin, getFailSignup, getLogout, failRoute } = require('../controllers/controller');
+const { getIndex, getLogin, getSignup, postLogin, postSignup, getFailLogin, getFailSignup, getLogout, failRoute, addCart } = require('../controllers/controller');
 const checkAuthentication = require('../middlewares/auth');
 const { fork } = require('child_process');
 
@@ -19,7 +19,7 @@ router.get('/failsignup', getFailSignup);
 
 // Redirect to login & signup
 router.post('/redirect-signup', (req, res) => res.redirect('/signup'));
-router.post('/redirect-login', (req, res) => res.redirect('/login'));
+router.post('/redirect-login', async (req, res) => res.redirect('/login'));
 
 // Logout
 router.post('/logout', getLogout);
@@ -48,6 +48,8 @@ router.get('/api/randoms', (req, res) => {
 		: forked.send({ cantidad: 500000000, obj });
 	forked.on('message', msg => res.json(msg));
 });
+
+router.post('/addCart', addCart)
 
 // Fail route
 router.get('*', failRoute);

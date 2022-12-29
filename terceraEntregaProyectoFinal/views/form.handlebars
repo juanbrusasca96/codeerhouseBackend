@@ -11,28 +11,25 @@
 	</div>
 </div>
 {{/if}}
-<section>
+{{!-- <section>
 	<h2>Ingrese Producto</h2>
-	<form id="form-add-product">
+	<form action="/addProduct" method="POST" id="form-add-product">
 		<div>
-			<label for='name'>Nombre</label>
-			<input id="name-product" type='text' name='name' />
+			<input id="name" type='text' name='name' placeholder="Nombre" />
 		</div>
 		<div>
-			<label for='price'>Precio</label>
-			<input id="price-product" type='number' name='price' />
+			<input id="price" type='number' name='price' placeholder="Precio" />
 		</div>
 		<div>
-			<label for='img'>Foto URL</label>
-			<input id="img-product" type='url' name='img' />
+			<input id="img" type='text' name='img' placeholder="Imagen" />
 		</div>
 		<div>
 			<input type='submit' value='Enviar' />
 		</div>
 	</form>
-</section>
+</section> --}}
 <section>
-	<h2>Vista de Productos</h2>
+	{{!-- <h2>Vista de Productos</h2>
 	<table>
 		<thead>
 			<tr>
@@ -43,16 +40,25 @@
 		</thead>
 		<tbody id="table-products"></tbody>
 	</table>
-	<h2 id="no-products">No hay productos listados</h2>
+	<h2 id="no-products">No hay productos listados</h2> --}}
+	{{#if arrayResponse}}
+	<form action="/addCart" method="POST">
+		<ul>
+			{{#each arrayResponse}}
+			<li> name: {{this.name}}, price: {{this.price}},image: <img src={{this.image}} alt=""></li>
+			{{/each}}
+		</ul>
+		<input type='submit' value='COMPRAR' />
+	</form>
+	{{/if}}
 </section>
-<section>
+{{!-- <section>
 	<h2>Centro de Mensajes</h2>
 	<input id="user-email" type="mail" id="usermail" placeholder="Ingresa tu email">
 	<hr>
 	<div id="table-chat"></div>
 	<form id="chat-form">
-		<input id="chat-message" type="text" name="chatmessage"
-			placeholder="Ingresá un mensaje...">
+		<input id="chat-message" type="text" name="chatmessage" placeholder="Ingresá un mensaje...">
 		<button type="submit">Enviar</button>
 	</form>
-</section>
+</section> --}}
